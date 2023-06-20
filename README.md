@@ -12,3 +12,4 @@ Pasos para ejecutar el proyecto:
 4. redis-server
 
 La base de datos utilizada es Sqlite.
+
