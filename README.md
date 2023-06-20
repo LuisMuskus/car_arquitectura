@@ -1,6 +1,7 @@
 # car_arquitectura
 Taller Car Arquitectura
 
+
 Pasos para ejecutar el proyecto:
 
 1. Instalar requirements.txt
@@ -12,4 +13,5 @@ Pasos para ejecutar el proyecto:
 4. redis-server
 
 La base de datos utilizada es Sqlite.
+
 
