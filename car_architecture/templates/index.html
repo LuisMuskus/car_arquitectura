@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión</title>
+    <link href="{% static '/styles/style.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <header>
+        <ul align="right">
+            <li><a href="{% url 'salir' %}">Cerrar Sesion</a></li>
+        </ul>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <h3>Sistema Importador</h3>
+                    <div class="drop_box">
+                        <header>
+                        <h4>Selecciona el archivo aquí</h4>
+                        </header>
+                        <p>Archivos soportados: CSV, XLS, XSLX</p>
+                        <!-- <form method="post" action="{% url 'process_file' %}" enctype="multipart/form-data">
+                            <input type="file" hidden accept=".csv,.xls,.xlsx" id="fileID" style="display:none;">
+                            <button class="btn">Elige Archivo</button>
+                            <input class="btn" type="submit" value="Enviar" style="display: flex;justify-content: center;">
+                        </form> -->
+                        <form method="post" action="{% url 'process_file' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input class="btn" type="file" hidden accept=".csv,.xls,.xlsx" name="excel_file" >
+                            <input class="btn" type="submit" value="Enviar">
+                          </form>
+                    </div>
+                </div>
+                <br />
+                <div class="card">
+                    <h3>Web scraping de Cursos</h3>
+                    <div class="drop_box">
+                        <header>
+                        <h4>Clic en el botón para iniciar scraping de Cursos</h4>
+                        </header>
+                        <br />
+                        <!-- <p>Archivos soportados: CSV, XLS, XSLX</p> -->
+                        <!-- <input type="file" hidden accept=".csv,.xls,.xlsx" id="fileID" style="display:none;"> -->
+                        <!-- <button class="btn">Iniciar</button> -->
+                        <form method="post" action="{% url 'scraping' %}">
+                            {% csrf_token %}
+                            <button class="btn" type="submit">Ejecutar Scraping</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+<script src="{% static '/js/upload.js' %}"></script>
+</body>
+</html>
