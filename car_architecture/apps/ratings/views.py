@@ -3,9 +3,10 @@ from django.template import Template, Context
 from django.contrib.auth import login, logout
 from django.contrib import messages
 from car_architecture.tasks import process_excel_file
+from car_architecture.tasks import process_excel_file_scrap
 from django.views.decorators.csrf import csrf_exempt
 import unittest
-from apps.ratings.tests import ScrapCourses
+from apps.ratings.scrap import ScrapCourses
 
 
 
@@ -44,20 +45,7 @@ def process_file(request):
 def scraping_view(request):
     if request.method == 'POST':
         # Aquí puedes llamar a tu script de web scraping
-
-        
-        # Realiza alguna acción con los resultados del web scraping
-        test_case = ScrapCourses()
-
-        test_result = test_case.run()
-
-    resultados = {
-        'total_pruebas': test_result.testsRun,
-        'pruebas_fallidas': len(test_result.failures),
-        'pruebas_errores': len(test_result.errors),
-        'pruebas_omitidas': len(test_result.skipped),
-        'resultados': test_result.tests,
-    }
-
-    #return render(request, 'resultados_prueba.html', {'resultados': resultados})
+        test_case = ScrapCourses.test_scrap_courses()
+        file_path = "scrap_cursos.xlsx"
+        process_excel_file_scrap.delay(file_path)  # Envía el archivo a la tarea Celery para su procesamiento
     return render(request, 'index.html')

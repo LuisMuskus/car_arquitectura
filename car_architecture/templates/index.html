@@ -31,7 +31,7 @@
                         </form> -->
                         <form method="post" action="{% url 'process_file' %}" enctype="multipart/form-data">
                             {% csrf_token %}
-                            <input class="btn" type="file" hidden accept=".csv,.xls,.xlsx" name="excel_file" >
+                            <input type="file" accept=".csv,.xls,.xlsx" name="excel_file" >
                             <input class="btn" type="submit" value="Enviar">
                           </form>
                     </div>
