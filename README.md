@@ -8,9 +8,9 @@ Pasos para ejecutar el proyecto:
 
 2. car_arquitectura/car_architecture> python manage.py runserver
 
-3. celery -A car_architecture worker --loglevel=info
+3. car_arquitectura/car_architecture> python manage.py runservercelery -A car_architecture worker --loglevel=info
 
-4. redis-server
+4. car_arquitectura/car_architecture>redis-server
 
 La base de datos utilizada es Sqlite.
 
